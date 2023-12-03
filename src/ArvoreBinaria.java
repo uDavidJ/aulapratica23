@@ -16,7 +16,7 @@ public class ArvoreBinaria {
         //Verifica se existe uma raiz na arvore. Se não existir, ele iniciará a raiz.
         if(this.raiz == null) {
             this.raiz = p;
-            System.out.println("Nó inserido com sucesso na raiz");
+            //System.out.println("Nó inserido com sucesso na raiz");
 
         }else {
 
@@ -70,7 +70,7 @@ public class ArvoreBinaria {
                             atual = atual.esq;
                         else {
                             System.out.println("Número " + reg.getChave() + " não existe na árvore após " + quantidade_comparacoes + " comparações!");
-                            return 0;
+                            return quantidade_comparacoes;
                         }
                             
                     else //se for maior ou igual
@@ -78,7 +78,7 @@ public class ArvoreBinaria {
                             atual = atual.dir; 
                         else {
                             System.out.println("Número " + reg.getChave() + " não existe na árvore após " + quantidade_comparacoes + " comparações!");
-                            return 0;
+                            return quantidade_comparacoes;
                         }
                         
                 }

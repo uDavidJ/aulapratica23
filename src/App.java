@@ -1,6 +1,24 @@
+import javax.swing.JOptionPane;
+
 public class App {
-    public static void main(String[] args) throws Exception {
+        public static void main(String[] args) throws Exception {
         
+        int resp = Integer.valueOf(JOptionPane.showInputDialog("1 - n x Comparações\n2 - n x Tempo de execução"));
+        int resp2 = Integer.valueOf(JOptionPane.showInputDialog("1 - Ordenados\n2 - Aleatórios"));
+
+        if(resp == 1 && resp2 == 1) 
+            new GraficoBarra(1);
+        else if(resp == 1 && resp2 == 2)
+            new GraficoBarra(2);
+        else if(resp == 2 && resp2 == 1)
+            new GraficoBarra(3);
+        else 
+            new GraficoBarra(4);        
+    
+
+        long comeco;
+        long fim;
+
         //Testes do método adiciona com criação e inserção de novos nós
 
         ArvoreBinaria arvore = new ArvoreBinaria();
@@ -32,62 +50,48 @@ public class App {
         arvore.pesquisa(new Item(7));
 
 
-        System.out.println("------------------------------------------------------");
+        System.out.println("---------------Exercicio a---------------");
 
 
         //a) gerar árvores a partir de n elementos ORDENADOS, com n variando de 1.000 até 9.000, com intervalo de 1.000.
         
         //Criação da árvore com elementos numerados ordenadamente de 1 a 100000
-        long comeco = System.currentTimeMillis();
-        ArvoreBinaria arvore2 = new ArvoreBinaria();
+        ArvoreBinaria arvore_ordenada1 = new ArvoreBinaria();
         for(int i = 1; i <= 100000; i++) 
-            arvore2.insere(new Item(i), new No());
-        long fim = (System.currentTimeMillis() - comeco) ;
-        System.out.println(fim + " Milisegundos na criação da árvore 2");
-        
+            arvore_ordenada1.insere(new Item(i), new No());
+;
         //Criação da árvore com elementos numerados ordenadamente de 100000 a 1
-        comeco = System.currentTimeMillis();
-        ArvoreBinaria arvore3 = new ArvoreBinaria();
+        ArvoreBinaria arvore_ordenada2 = new ArvoreBinaria();
         for(int i = 100000; i >= 1; i--) 
-            arvore3.insere(new Item(i), new No());
-        fim = (System.currentTimeMillis() - comeco);
-        System.out.println(fim + " Milisegundos na criação da árvore 3");
+            arvore_ordenada2.insere(new Item(i), new No());
 
         //Criação da árvore com elementos ordenados de 1 a 100000 a partir da raiz 50000
-        comeco = System.currentTimeMillis();
-        ArvoreBinaria arvore4 = new ArvoreBinaria();
+        ArvoreBinaria arvore_ordenada3 = new ArvoreBinaria();
         for(int i = 50000; i >= 1; i--) 
-            arvore4.insere(new Item(i), new No());
+            arvore_ordenada3.insere(new Item(i), new No());
 
         for(int i = 50001; i <= 100000; i++) 
-            arvore4.insere(new Item(i), new No());
+            arvore_ordenada3.insere(new Item(i), new No());
         
-        fim = (System.currentTimeMillis() - comeco);
-        System.out.println(fim + " Milisegundos na criação da árvore 4");       
-
-        System.out.println("------------------------------------------------------");
-
         //pesquisa inexistente nas árvores 2, 3 e 4
 
-
+        comeco = System.currentTimeMillis();
+        arvore_ordenada1.pesquisa(new Item(100001));
+        fim = (System.currentTimeMillis() - comeco);
+        System.out.println(fim + " Milisegundos na execução da pesquisa da árvore ordenada 1");
 
         comeco = System.currentTimeMillis();
-        arvore2.pesquisa(new Item(100001));
+        arvore_ordenada2.pesquisa(new Item(-1));
         fim = (System.currentTimeMillis() - comeco);
-        System.out.println(fim + " Milisegundos na execução da pesquisa da árvore 2");
+        System.out.println(fim + " Milisegundos na execução da pesquisa da árvore ordenada 2");
 
         comeco = System.currentTimeMillis();
-        arvore3.pesquisa(new Item(-1));
+        arvore_ordenada3.pesquisa(new Item(100001));
         fim = (System.currentTimeMillis() - comeco);
-        System.out.println(fim + " Milisegundos na execução da pesquisa da árvore 3");
-
-        comeco = System.currentTimeMillis();
-        arvore4.pesquisa(new Item(100001));
-        fim = (System.currentTimeMillis() - comeco);
-        System.out.println(fim + " Milisegundos na execução da pesquisa da árvore 4");
+        System.out.println(fim + " Milisegundos na execução da pesquisa da árvore ordenaa 3");
 
 
-        System.out.println("------------------------------------------------------");
+        System.out.println("---------------Exercicio b---------------");
 
         //b) gerar árvores a partir de n elementos ALEATÓRIOS, com n variando de 1.000 até 9.000, com intervalo de 1.000.
 
